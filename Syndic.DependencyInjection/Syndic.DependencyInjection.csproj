@@ -27,6 +27,8 @@
 	  <ItemGroup>
 	    <ProjectReference Include="..\Syndic.domain\Syndic.domain.csproj" />
 	    <ProjectReference Include="..\Syndic.Persistence.EntityFramework\Syndic.Persistence.EntityFramework.csproj" />
+	    <ProjectReference Include="..\Syndic.Service.Abstraction\Syndic.Service.Abstraction.csproj" />
+	    <ProjectReference Include="..\Syndic.Services\Syndic.Services.csproj" />
 	  </ItemGroup>
 
  

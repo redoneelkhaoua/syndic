@@ -94,12 +94,12 @@ namespace Syndic.Persistence.EntityFramework
                 entity.Property(e => e.Statut).HasColumnName("statut");
 
                 entity.HasOne(d => d.CategorieNavigation)
-                    .WithMany(p => p.Dossiers)
+                    .WithMany()
                     .HasForeignKey(d => d.Categorie)
                     .HasConstraintName("dossier_categorie_fkey");
 
                 entity.HasOne(d => d.StatutNavigation)
-                    .WithMany(p => p.Dossiers)
+                    .WithMany()
                     .HasForeignKey(d => d.Statut)
                     .HasConstraintName("dossier_statut_fkey");
             });

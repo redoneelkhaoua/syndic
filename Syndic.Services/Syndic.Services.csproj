@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Syndic.domain\Syndic.domain.csproj" />
+    <ProjectReference Include="..\Syndic.Repository.Abstraction\Syndic.Repository.Abstraction.csproj" />
+    <ProjectReference Include="..\Syndic.Service.Abstraction\Syndic.Service.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>
