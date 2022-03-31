@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Models\Categorie.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Choix.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Dossier.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Fichier.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Note.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Participant.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Resultat.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Statut.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Models\Vote.cs">
+      <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
+    </Compile>
+  </ItemGroup>
+
+</Project>
