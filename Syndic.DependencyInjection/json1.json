@@ -1,13 +1,5 @@
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-
   "ConnectionStrings": {
     "SyndicDatabase": "User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic2;Pooling=true;Connection Lifetime=0;"
-  },
-    "AllowedHosts": "*"
   }
+}

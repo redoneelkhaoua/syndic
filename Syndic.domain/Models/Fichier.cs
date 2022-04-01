@@ -7,7 +7,10 @@ namespace Syndic.domain.Models
     {
         public int IdFichier { get; set; }
         public string? Note { get; set; }
-        public string? Fichier1 { get; set; }
+        public string? fichier { get; set; }
+
+    
+
         public DateOnly? DateCreation { get; set; }
         public string? Typee { get; set; }
         public int? IdDossier { get; set; }

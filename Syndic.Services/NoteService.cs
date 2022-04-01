@@ -3,37 +3,46 @@ using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using Syndic.Service.Abstraction;
 
+
 namespace Syndic.Services
 {
-    public class DossierService: IServiceDossier
+    public class NoteService : IServicePublication<Note>
     {
-        IRepositoryDossier repository;
+        IRepositoryPublication<Note> repository;
 
-        public DossierService(IRepositoryDossier repository)
+        public NoteService(IRepositoryPublication<Note> repository)
         {
             this.repository = repository;
         }
+      
 
-        public void creer(Dossier model)
+        public void creer(Note model)
         {
             Guard.Against.Null(model, nameof(model));
             repository.creer(model);
         }
 
-        public void modifier(int id, Dossier model)
+        public void modifier(int id, Note model)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             Guard.Against.Null(model, nameof(model));
             repository.modifier(id, model);
         }
 
-        public Dossier rechercheParId(int id)
+        public IEnumerable<Note> rechercheParDossier(int id)
+        {
+            Guard.Against.NegativeOrZero(id, nameof(id));
+            return repository.rechercheParDossier(id);
+
+        }
+
+        public Note rechercheParId(int id)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             return repository.rechercheParId(id);
         }
 
-        public IEnumerable<Dossier> rechercherTout()
+        public IEnumerable<Note> rechercherTout()
         {
             return repository.rechercherTout();
         }
@@ -42,18 +51,6 @@ namespace Syndic.Services
         {
             repository.suprimer(id);
         }
-        public IEnumerable<Dossier> rechercheParTitle(string title)
-        {
-            return repository.rechercheParTitle(title);
-        }
-        public IEnumerable<Dossier> rechercheParCategorie(int id)
-        {
-            return repository.rechercheParCategorie(id);   
-        }
-        public IEnumerable<Dossier> rechercheParStatut(int id)
-        {
-            return repository.rechercheParStatut(id);
-        }
-       
+
     }
 }

@@ -34,7 +34,10 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public Categorie rechercheParId(int id)
         {
-            return context.Categories.FirstOrDefault(s => s.IdCategorie == id);
+            var categorie= context.Categories.FirstOrDefault(s => s.IdCategorie == id);
+           
+          
+            return categorie;
         }
 
         public IEnumerable<Categorie> rechercherTout()

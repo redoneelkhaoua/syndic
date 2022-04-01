@@ -6,7 +6,7 @@ namespace Syndic.domain.Models
     public partial class Note
     {
         public int IdNote { get; set; }
-        public string? Note1 { get; set; }
+        public string? note { get; set; }
         public DateOnly? DateCreation { get; set; }
         public string? Typee { get; set; }
         public int? IdDossier { get; set; }

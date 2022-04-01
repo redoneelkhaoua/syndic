@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Syndic.domain.Models;
 using Syndic.Persistence.EntityFramework;
@@ -11,8 +12,16 @@ namespace Syndic.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
+        static IConfiguration  configuration;
+
+      
+
         public static IServiceCollection AddSyndic(this IServiceCollection services)
         {
+            services.AddTransient<IRepositoryPublication<Fichier>, FichierRepository>();
+            services.AddTransient<IServicePublication<Fichier>, FichierService>();
+            services.AddTransient<IRepositoryPublication<Note>, NoteRepository>();
+            services.AddTransient<IServicePublication<Note>, NoteService>();
             services.AddTransient<IRepository<Statut>, StatutRepository>();
             services.AddTransient<IService<Statut>, StatutService>();
             services.AddTransient<IRepository<Categorie>,CategorieRepository>();

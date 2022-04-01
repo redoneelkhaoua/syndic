@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Syndic.DependencyInjection;
+using Syndic.Persistence.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.

@@ -67,9 +67,9 @@ namespace syndic.Controllers
             return Ok(result);
         }
         [HttpGet("Statut/{statut}")]
-        public IActionResult rechercheParStatut(int Statut)
+        public IActionResult rechercheParStatut(int statut)
         {
-            var result = service.rechercheParCategorie(Statut);
+            var result = service.rechercheParStatut(statut);
             if (result == null)
             {
                 return NotFound();

@@ -117,7 +117,7 @@ namespace Syndic.Persistence.EntityFramework
 
                 entity.Property(e => e.DateCreation).HasColumnName("date_creation");
 
-                entity.Property(e => e.Fichier1).HasColumnName("fichier");
+                entity.Property(e => e.fichier).HasColumnName("fichier");
 
                 entity.Property(e => e.IdDossier).HasColumnName("id_dossier");
 
@@ -146,7 +146,7 @@ namespace Syndic.Persistence.EntityFramework
 
                 entity.Property(e => e.IdDossier).HasColumnName("id_dossier");
 
-                entity.Property(e => e.Note1).HasColumnName("note");
+                entity.Property(e => e.note).HasColumnName("note");
 
                 entity.Property(e => e.Typee).HasColumnName("typee");
 
