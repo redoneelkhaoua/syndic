@@ -13,13 +13,15 @@ namespace Syndic.DependencyInjection
     {
         public static IServiceCollection AddSyndic(this IServiceCollection services)
         {
+            services.AddTransient<IRepository<Statut>, StatutRepository>();
+            services.AddTransient<IService<Statut>, StatutService>();
             services.AddTransient<IRepository<Categorie>,CategorieRepository>();
             services.AddTransient<IService<Categorie>, CategorieService>();
-            // todo une connection par request => open à reception de request / fermeture une fois une reponse est donnée
-
+            services.AddTransient<IRepositoryDossier, DossierRepository>();
+            services.AddTransient<IServiceDossier, DossierService>();
             services.AddDbContext<SyndicContext>(o =>
             {
-                o.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic;Pooling=true;Connection Lifetime=0;");
+                o.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic2;Pooling=true;Connection Lifetime=0;");
             });
             return services;
         }

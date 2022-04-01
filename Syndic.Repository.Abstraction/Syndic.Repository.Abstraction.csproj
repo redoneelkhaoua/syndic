@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Syndic.domain\Syndic.domain.csproj" />
+  </ItemGroup>
+
 </Project>

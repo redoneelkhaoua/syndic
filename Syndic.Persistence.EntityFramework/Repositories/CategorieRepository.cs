@@ -25,7 +25,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void modifier(int id, Categorie model)
         {
-            var categorie =  context.Categories.FirstOrDefault(s => s.IdCategorie == id);
+            var categorie = rechercheParId(id);
             
             categorie.NomCategorie = model.NomCategorie;
            
@@ -47,5 +47,5 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             context.Remove(rechercheParId(id));
              context.SaveChanges();
         }
-    }
+}
 }
