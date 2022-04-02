@@ -54,7 +54,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
           }
           public    IEnumerable< Dossier> rechercheParTitle(string title)
           { 
-            IEnumerable<Dossier>   result = context.Dossiers.Where(s => s.title == title);
+            IEnumerable<Dossier>   result = context.Dossiers.Where(s => s.Titre == title);
             return result;
           }
           public IEnumerable<Dossier> rechercheParCategorie(int id)

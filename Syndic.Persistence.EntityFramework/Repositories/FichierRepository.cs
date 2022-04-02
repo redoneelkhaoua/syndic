@@ -31,7 +31,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             fichier.DateCreation = model.DateCreation;
             fichier.Note=model.Note;
             fichier.fichier = model.fichier;
-            fichier.Typee = model.Typee;
+            fichier.Type = model.Type;
 
 
 

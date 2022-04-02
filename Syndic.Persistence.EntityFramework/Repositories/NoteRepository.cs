@@ -28,7 +28,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             var note = rechercheParId(id);
             note.note= model.note;
             note.DateCreation = model.DateCreation;
-            note.Typee = model.Typee;
+            note.Type = model.Type;
             note.IdDossier= model.IdDossier;
             context.SaveChanges();
         }

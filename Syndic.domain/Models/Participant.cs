@@ -11,7 +11,7 @@ namespace Syndic.domain.Models
         }
 
         public int IdParticipant { get; set; }
-        public string? Nom { get; set; }
+        public string? NomParticipant { get; set; }
 
         public virtual ICollection<Resultat> Resultats { get; set; }
     }

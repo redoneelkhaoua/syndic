@@ -64,7 +64,7 @@ namespace Syndic.Persistence.EntityFramework
                     .ValueGeneratedNever()
                     .HasColumnName("id_choix");
 
-                entity.Property(e => e.Choix1).HasColumnName("choix");
+                entity.Property(e => e.choix).HasColumnName("choix");
 
                 entity.Property(e => e.IdVote).HasColumnName("id_vote");
 
@@ -123,7 +123,7 @@ namespace Syndic.Persistence.EntityFramework
 
                 entity.Property(e => e.Note).HasColumnName("note");
 
-                entity.Property(e => e.Typee).HasColumnName("typee");
+                entity.Property(e => e.Type).HasColumnName("type");
 
                 entity.HasOne(d => d.IdDossierNavigation)
                     .WithMany(p => p.Fichiers)
@@ -148,7 +148,7 @@ namespace Syndic.Persistence.EntityFramework
 
                 entity.Property(e => e.note).HasColumnName("note");
 
-                entity.Property(e => e.Typee).HasColumnName("typee");
+                entity.Property(e => e.Type).HasColumnName("type");
 
                 entity.HasOne(d => d.IdDossierNavigation)
                     .WithMany(p => p.Notes)
@@ -167,7 +167,7 @@ namespace Syndic.Persistence.EntityFramework
                     .ValueGeneratedNever()
                     .HasColumnName("id_participant");
 
-                entity.Property(e => e.Nom).HasColumnName("nom");
+                entity.Property(e => e.NomParticipant).HasColumnName("nomparticipant");
             });
 
             modelBuilder.Entity<Resultat>(entity =>
@@ -230,9 +230,9 @@ namespace Syndic.Persistence.EntityFramework
 
                 entity.Property(e => e.IdDossier).HasColumnName("id_dossier");
 
-                entity.Property(e => e.Title).HasColumnName("title");
+                entity.Property(e => e.Titre).HasColumnName("titre");
 
-                entity.Property(e => e.Typee).HasColumnName("typee");
+                entity.Property(e => e.Type).HasColumnName("type");
 
                 entity.HasOne(d => d.IdDossierNavigation)
                     .WithMany(p => p.Votes)

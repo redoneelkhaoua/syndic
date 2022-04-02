@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "syndic1": {
+    "syndic": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -28,9 +28,18 @@ namespace Syndic.DependencyInjection
             services.AddTransient<IService<Categorie>, CategorieService>();
             services.AddTransient<IRepositoryDossier, DossierRepository>();
             services.AddTransient<IServiceDossier, DossierService>();
+            services.AddTransient<IService<Vote>, VoteService>();
+            services.AddTransient<IRepository<Vote>, VoteRepository>();
+            services.AddTransient<IService<Choix>, ChoixService>();
+            services.AddTransient<IRepository<Choix>, ChoixRepository>();
+            services.AddTransient<IService<Resultat>, ResultatService>();
+            services.AddTransient<IRepository<Resultat>, ResultatRepository>();
+            //services.AddTransient<IService<Participant>, ParticipantService>();
+            //services.AddTransient<IRepository<Participant>, ParticipantRepository>();
+
             services.AddDbContext<SyndicContext>(o =>
             {
-                o.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic2;Pooling=true;Connection Lifetime=0;");
+                o.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic;Pooling=true;Connection Lifetime=0;");
             });
             return services;
         }

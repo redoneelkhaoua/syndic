@@ -11,7 +11,7 @@ namespace Syndic.domain.Models
         }
 
         public int IdChoix { get; set; }
-        public string? Choix1 { get; set; }
+        public string? choix { get; set; }
         public int? IdVote { get; set; }
 
         public virtual Vote? IdVoteNavigation { get; set; }
