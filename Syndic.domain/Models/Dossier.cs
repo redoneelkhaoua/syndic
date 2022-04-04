@@ -15,7 +15,7 @@ namespace Syndic.domain.Models
         public int IdDossier { get; set; }
         public string Titre { get; set; }
         public string? Description { get; set; }
-        public DateOnly? DateCreation { get; set; }
+        public DateTime? DateCreation { get; set; }
         public int? Categorie { get; set; }
         public int? Statut { get; set; }
 

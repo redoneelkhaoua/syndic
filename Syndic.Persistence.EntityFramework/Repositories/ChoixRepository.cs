@@ -19,6 +19,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void creer(Choix model)
         {
+            model.IdChoix = _context.Choixes.Count() + 1;
             _context.Add(model);
             _context.SaveChanges();
         }

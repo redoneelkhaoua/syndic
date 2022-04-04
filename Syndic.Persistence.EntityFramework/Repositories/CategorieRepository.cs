@@ -19,6 +19,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void creer(Categorie model)
         {
+            model.IdCategorie = context.Categories.Count() + 1;
             context.Add(model);
             context.SaveChanges();
         }

@@ -19,6 +19,8 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void creer(Fichier model)
         {
+            model.DateCreation = DateTime.Now;
+            model.IdFichier = context.Fichiers.Count() + 1;
             context.Add(model);
             context.SaveChanges();
         }

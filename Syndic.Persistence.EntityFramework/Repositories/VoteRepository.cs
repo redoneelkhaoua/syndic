@@ -18,6 +18,8 @@ namespace Syndic.Persistence.EntityFramework.Repositories
         }
         public void creer(Vote model)
         {
+            model.DateCreation = DateTime.Now;
+            model.IdVote = _context.Votes.Count() + 1;
             _context.Add(model);
             _context.SaveChanges();
         }

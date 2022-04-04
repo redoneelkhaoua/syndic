@@ -19,6 +19,8 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void creer(Note model)
         {
+            model.DateCreation = DateTime.Now;
+            model.IdNote = context.Notes.Count() + 1;
             context.Add(model);
             context.SaveChanges();
         }

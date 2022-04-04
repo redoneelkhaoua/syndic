@@ -16,7 +16,9 @@ namespace Syndic.Services
 
         public void creer(Dossier model)
         {
+
             Guard.Against.Null(model, nameof(model));
+
             repository.creer(model);
         }
 
