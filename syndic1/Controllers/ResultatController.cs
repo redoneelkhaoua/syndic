@@ -6,16 +6,16 @@ namespace syndic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ChoixController : Controller
+    public class ResultatController : ControllerBase
     {
-        IService<Choix> _service;
-        public ChoixController(IService<Choix> service)
+        IService<Resultat> _service;
+        public ResultatController(IService<Resultat> service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public ActionResult<Choix> RechercheTout()
+        public ActionResult<Vote> RechercheTout()
         {
             return Ok(_service.rechercherTout());
         }
@@ -35,21 +35,22 @@ namespace syndic.Controllers
 
 
         [HttpPost]
-        public void creer(Choix choix)
+        public void creer(Resultat resultat)
         {
-            _service.creer(choix);
+            _service.creer(resultat);
         }
 
 
         [HttpPut("{id}")]
-        public void Modifier(int id, Choix choix)
+        public void Modifier(int id, Resultat resultat)
         {
-            _service.modifier(id, choix);
+            _service.modifier(id, resultat);
         }
         [HttpDelete("{id}")]
         public void suprimer(int id)
         {
             _service.suprimer(id);
         }
+
     }
 }

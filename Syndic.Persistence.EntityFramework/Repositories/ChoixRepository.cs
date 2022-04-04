@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Syndic.Persistence.EntityFramework.Repositories
 {
-    public class ChoixRepository : IRepository<Choix>
+    public class ChoixRepository : IRepositoryChoix
     {
         SyndicContext _context;
 
@@ -33,19 +33,30 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public Choix rechercheParId(int id)
         {
-            var choix = _context.Choix.FirstOrDefault(s => s.IdChoix == id);
+            var choix = _context.Choixes.FirstOrDefault(s => s.IdChoix == id);
             return choix;
+        }
+
+        public IEnumerable<Choix> rechercherParIdVote(int IdVote)
+        {
+            var choix= _context.Choixes.ToList().FirstOrDefault(s => s.IdVote == IdVote);
+            yield return choix;
         }
 
         public IEnumerable<Choix> rechercherTout()
         {
-            return _context.Choix.ToList();
+            return _context.Choixes.ToList();
         }
 
         public void suprimer(int id)
         {
-            _context.Remove(rechercheParId(id));
-            
+            //_context.Remove(_context.Choixes.ToList().FirstOrDefault(s => s.IdVote == id));
+
+        }
+
+        public void suprimerToutParIdVote(int IdVote)
+        {
+            throw new NotImplementedException();
         }
     }
 }

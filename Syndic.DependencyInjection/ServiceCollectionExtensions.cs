@@ -34,8 +34,8 @@ namespace Syndic.DependencyInjection
             services.AddTransient<IRepository<Choix>, ChoixRepository>();
             services.AddTransient<IService<Resultat>, ResultatService>();
             services.AddTransient<IRepository<Resultat>, ResultatRepository>();
-            //services.AddTransient<IService<Participant>, ParticipantService>();
-            //services.AddTransient<IRepository<Participant>, ParticipantRepository>();
+            services.AddTransient<IService<Participant>, ParticipantService>();
+            services.AddTransient<IRepository<Participant>, ParticipantRepository>();
 
             services.AddDbContext<SyndicContext>(o =>
             {

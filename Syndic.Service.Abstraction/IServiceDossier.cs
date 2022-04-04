@@ -1,5 +1,4 @@
-﻿
-using Syndic.domain.Models;
+﻿using Syndic.domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

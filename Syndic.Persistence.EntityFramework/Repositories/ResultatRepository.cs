@@ -12,6 +12,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
     {
 
         SyndicContext _context;
+        
 
         public ResultatRepository(SyndicContext context)
         {
@@ -36,8 +37,9 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public Resultat rechercheParId(int id)
         {
-            
-            return null;
+
+            var resultat = _context.Resultats.FirstOrDefault(s => s.IdParticipant == id);
+            return resultat;
         }
 
         public IEnumerable<Resultat> rechercherTout()
@@ -47,8 +49,10 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void suprimer(int id)
         {
+            
             _context.Remove(rechercheParId(id));
             _context.SaveChanges();
         }
+
     }
 }

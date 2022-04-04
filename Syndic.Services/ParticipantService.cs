@@ -11,12 +11,15 @@ using System.Threading.Tasks;
 namespace Syndic.Services
 {
     public class ParticipantService : IService<Participant>
+    
     {
         IRepository<Participant> _repository;
+
         public ParticipantService(IRepository<Participant> repository)
         {
             _repository = repository;
         }
+
         public void creer(Participant model)
         {
             Guard.Against.Null(model, nameof(model));

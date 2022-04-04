@@ -19,7 +19,7 @@ namespace Syndic.Persistence.EntityFramework
         }
 
         public virtual DbSet<Categorie> Categories { get; set; } = null!;
-        public virtual DbSet<Choix> Choix { get; set; } = null!;
+        public virtual DbSet<Choix> Choixes { get; set; } = null!;
         public virtual DbSet<Dossier> Dossiers { get; set; } = null!;
         public virtual DbSet<Fichier> Fichiers { get; set; } = null!;
         public virtual DbSet<Note> Notes { get; set; } = null!;

@@ -13,6 +13,6 @@ namespace Syndic.Repository.Abstraction
         public void creer(Model model);
         public void suprimer(int id);
         public void modifier(int id, Model model);
-
+        
     }
 }

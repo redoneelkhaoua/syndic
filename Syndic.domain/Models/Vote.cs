@@ -13,7 +13,7 @@ namespace Syndic.domain.Models
 
         public int IdVote { get; set; }
         public string? Titre { get; set; }
-        public DateOnly? DateCreation { get; set; }
+        public DateTime? DateCreation { get; set; }
         public string? Type { get; set; }
         public int? IdDossier { get; set; }
 

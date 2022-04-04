@@ -1,4 +1,6 @@
-﻿using Syndic.domain.Models;
+﻿using Ardalis.GuardClauses;
+using Syndic.domain.Models;
+using Syndic.Repository.Abstraction;
 using Syndic.Service.Abstraction;
 using System;
 using System.Collections.Generic;
@@ -10,29 +12,39 @@ namespace Syndic.Services
 {
     public class ResultatService : IService<Resultat>
     {
+        IRepository<Resultat> _repository;
+
+        public ResultatService(IRepository<Resultat> repository)
+        {
+            _repository = repository;
+        }
         public void creer(Resultat model)
         {
-            throw new NotImplementedException();
+            Guard.Against.Null(model, nameof(model));
+            _repository.creer(model);
         }
 
         public void modifier(int id, Resultat model)
         {
-            throw new NotImplementedException();
+            Guard.Against.NegativeOrZero(id, nameof(id));
+            Guard.Against.Null(model, nameof(model));
+            _repository.modifier(id, model);
         }
 
         public Resultat rechercheParId(int id)
         {
-            throw new NotImplementedException();
+            Guard.Against.NegativeOrZero(id, nameof(id));
+            return _repository.rechercheParId(id);
         }
 
         public IEnumerable<Resultat> rechercherTout()
         {
-            throw new NotImplementedException();
+            return _repository.rechercherTout();
         }
 
         public void suprimer(int id)
         {
-            throw new NotImplementedException();
+            _repository.suprimer(id);
         }
     }
 }

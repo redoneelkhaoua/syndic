@@ -10,12 +10,11 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 {
     public class ParticipantRepository : IRepository<Participant>
     {
-
         SyndicContext _context;
-
         public ParticipantRepository(SyndicContext context)
         {
-            _context = context;
+            
+                _context = context;
         }
         public void creer(Participant model)
         {
@@ -23,21 +22,18 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             _context.SaveChanges();
         }
 
-       
-
         public void modifier(int id, Participant model)
         {
-            var Participant = rechercheParId(id);
-            Participant.NomParticipant = model.NomParticipant;
-            
-            _context.SaveChanges();
+            var participant = rechercheParId(id);
 
+            participant.NomParticipant = model.NomParticipant;
+
+            _context.SaveChanges();
         }
 
         public Participant rechercheParId(int id)
         {
-            var participant = _context.Participants.FirstOrDefault(s => s.IdParticipant == id);
-            return participant;
+            return _context.Participants.FirstOrDefault(s => s.IdParticipant == id);
         }
 
         public IEnumerable<Participant> rechercherTout()
@@ -47,6 +43,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void suprimer(int id)
         {
+            
             _context.Remove(rechercheParId(id));
             _context.SaveChanges();
         }

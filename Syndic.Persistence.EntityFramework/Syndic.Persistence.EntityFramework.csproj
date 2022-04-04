@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Syndic.domain\Syndic.domain.csproj" />
     <ProjectReference Include="..\Syndic.Repository.Abstraction\Syndic.Repository.Abstraction.csproj" />
+    <ProjectReference Include="..\Syndic.Services\Syndic.Services.csproj" />
   </ItemGroup>
 
 </Project>

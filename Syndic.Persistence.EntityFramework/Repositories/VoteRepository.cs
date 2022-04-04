@@ -46,8 +46,11 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public void suprimer(int id)
         {
+            
             _context.Remove(rechercheParId(id));
             _context.SaveChanges();
         }
+
+        
     }
 }
