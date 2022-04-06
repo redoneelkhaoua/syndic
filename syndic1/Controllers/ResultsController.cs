@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Syndic.domain.Models;
 using Syndic.Service.Abstraction;
 
@@ -7,23 +6,21 @@ namespace syndic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VoteController : ControllerBase
+    public class ResultsController : ControllerBase
     {
-        IService<Vote> _service;
-
-
-        public VoteController (IService<Vote> service)
+        IService<Resultat> _service;
+        public ResultsController(IService<Resultat> service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public ActionResult<Vote> RechercheTout()
+        public IActionResult RechercheTout()
         {
             return Ok(_service.rechercherTout());
         }
 
-
+        
         [HttpGet("{id}")]
         public IActionResult REchercheParId(int id)
         {
@@ -36,18 +33,18 @@ namespace syndic.Controllers
         }
 
 
-       
+
         [HttpPost]
-        public void creer(Vote vote)
+        public void creer(Resultat resultat)
         {
-            _service.creer(vote);
+            _service.creer(resultat);
         }
 
 
         [HttpPut("{id}")]
-        public void Modifier(int id, Vote vote)
+        public void Modifier(int id, Resultat resultat)
         {
-            _service.modifier(id, vote);
+            _service.modifier(id, resultat);
         }
         [HttpDelete("{id}")]
         public void suprimer(int id)

@@ -10,10 +10,27 @@ namespace syndic.Controllers
     public class DossierController : ControllerBase
     {
         IServiceDossier service;
-
-        public DossierController(IServiceDossier service)
+        IService<Categorie> categorieService;
+        IService<Statut> statutService;
+        public DossierController(IServiceDossier service,IService<Categorie>  _categorieService, IService<Statut> _statutService)
         {
             this.service = service;
+            this.categorieService = _categorieService;
+            this.statutService = _statutService;
+        }
+
+        [HttpGet("Statut")]
+        public IActionResult rechercheToutStatut()
+        {
+            return Ok(statutService.rechercherTout());
+
+        }
+
+        [HttpGet("Categorie")]
+        public IActionResult rechercheToutCategorie()
+        {
+            return Ok(categorieService.rechercherTout());
+
         }
         [HttpGet]
         public  IActionResult rechercheTout()
@@ -56,25 +73,6 @@ namespace syndic.Controllers
             }
             return Ok(result);
         }
-        [HttpGet("Categorie/{categorie}")]
-        public IActionResult rechercheParCategorie(int categorie)
-        {
-            var result = service.rechercheParCategorie(categorie);
-            if (result == null)
-            {
-                return NotFound();
-            }
-            return Ok(result);
-        }
-        [HttpGet("Statut/{statut}")]
-        public IActionResult rechercheParStatut(int statut)
-        {
-            var result = service.rechercheParStatut(statut);
-            if (result == null)
-            {
-                return NotFound();
-            }
-            return Ok(result);
-        }
+        
     }
 }
