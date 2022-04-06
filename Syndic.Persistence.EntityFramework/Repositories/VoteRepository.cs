@@ -11,13 +11,18 @@ namespace Syndic.Persistence.EntityFramework.Repositories
     public class VoteRepository : IRepository<Vote>
     {
         SyndicContext _context;
+        ICollection<Choix> choixes;
+
 
         public VoteRepository(SyndicContext context)
         {
             _context = context;
+            choixes = new List<Choix>();
         }
         public void creer(Vote model)
         {
+            //choixes = model.Choixes;
+
             model.DateCreation = DateTime.Now;
             model.IdVote = _context.Votes.Count() + 1;
             _context.Add(model);
@@ -44,13 +49,17 @@ namespace Syndic.Persistence.EntityFramework.Repositories
         public IEnumerable<Vote> rechercherTout()
         {
             return _context.Votes.ToList();
+
         }
 
         public void suprimer(int id)
         {
-            
-            _context.Remove(rechercheParId(id));
+            var vote = _context.Votes.Single(e => e.IdVote == id);
+            var choix = _context.Choixes.Single(e => e.IdVote == vote.IdVote);
+
+            _context.Remove(vote);
             _context.SaveChanges();
+
         }
 
         

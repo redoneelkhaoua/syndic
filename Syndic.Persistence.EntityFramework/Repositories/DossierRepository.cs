@@ -11,14 +11,18 @@ namespace Syndic.Persistence.EntityFramework.Repositories
     public class DossierRepository : IRepositoryDossier
     {
          SyndicContext context;
+      
 
           public DossierRepository(SyndicContext context)
           {
               this.context = context;
+              
           }
 
           public void creer(Dossier model)
           {
+            
+
             model.DateCreation = DateTime.Now;
             model.IdDossier=context.Dossiers.Count()+1;
               context.Add(model);

@@ -20,6 +20,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
          public void creer(Statut model)
          {
+             model.IdStatut=context.Statuts.Count()+1;
              context.Add(model);
              context.SaveChanges();
          }

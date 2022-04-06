@@ -36,7 +36,7 @@ namespace Syndic.DependencyInjection
             services.AddTransient<IRepository<Resultat>, ResultatRepository>();
             services.AddTransient<IService<Participant>, ParticipantService>();
             services.AddTransient<IRepository<Participant>, ParticipantRepository>();
-
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             services.AddDbContext<SyndicContext>(o =>
             {
                 o.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic;Pooling=true;Connection Lifetime=0;");
