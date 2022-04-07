@@ -47,16 +47,16 @@ namespace Syndic.Persistence.EntityFramework.Repositories
               
                 .Include(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
                 .Include(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
-                .Include(vote => vote.Choixes)
+                .Include(vote => vote.Choixes).ThenInclude(choix => choix.Resultats)
                 .FirstOrDefault(s => s.IdVote == id);
             return vote;
         }
 
         public IEnumerable<Vote> rechercherTout()
         {
-            return _context.Votes.Include(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
+                return _context.Votes.Include(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
                 .Include(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
-                .Include(vote => vote.Choixes);
+                .Include(vote => vote.Choixes).ThenInclude(choix=>choix.Resultats);
 
         }
 
