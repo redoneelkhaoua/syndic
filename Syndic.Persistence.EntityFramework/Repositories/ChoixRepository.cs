@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Syndic.Persistence.EntityFramework.Repositories
 {
-    public class ChoixRepository : IRepositoryChoix
+    public class ChoixRepository : IRepository<Choix>
     {
         SyndicContext _context;
 
@@ -55,9 +55,6 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         }
 
-        public void suprimerToutParIdVote(int IdVote)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

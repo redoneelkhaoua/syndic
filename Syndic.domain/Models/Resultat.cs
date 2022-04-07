@@ -10,7 +10,7 @@ namespace Syndic.domain.Models
         public int? IdChoix { get; set; }
 
         public virtual Choix? IdChoixNavigation { get; set; }
-        public virtual Participant IdParticipantNavigation { get; set; } = null!;
-        public virtual Vote IdVoteNavigation { get; set; } = null!;
+        public virtual Participant? IdParticipantNavigation { get; set; } = null!;
+        public virtual Vote? IdVoteNavigation { get; set; } = null!;
     }
 }

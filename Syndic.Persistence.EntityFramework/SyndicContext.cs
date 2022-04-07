@@ -191,13 +191,13 @@ namespace Syndic.Persistence.EntityFramework
                 entity.HasOne(d => d.IdParticipantNavigation)
                     .WithMany(p => p.Resultats)
                     .HasForeignKey(d => d.IdParticipant)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                   
                     .HasConstraintName("resultat_id_participant_fkey");
 
                 entity.HasOne(d => d.IdVoteNavigation)
                     .WithMany(p => p.Resultats)
                     .HasForeignKey(d => d.IdVote)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    
                     .HasConstraintName("resultat_id_vote_fkey");
             });
 

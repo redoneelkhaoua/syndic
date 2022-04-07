@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using System;
@@ -34,14 +35,26 @@ namespace Syndic.Persistence.EntityFramework.Repositories
              context.SaveChanges();
          }
 
-         public Statut rechercheParId(int id)
+         public Statut? rechercheParId(int id)
          {
-             return context.Statuts.FirstOrDefault(s => s.IdStatut == id);
+             return context.Statuts
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Fichiers)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Notes)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Choixes)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Fichiers)
+                .FirstOrDefault(s => s.IdStatut == id);
          }
 
          public IEnumerable<Statut> rechercherTout()
          {
-             return context.Statuts.ToList();
+             return context.Statuts.Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Fichiers)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Notes)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Choixes)
+                .Include(statut => statut.Dossiers).ThenInclude(dossier => dossier.Fichiers);
          }
 
          public void suprimer(int id)

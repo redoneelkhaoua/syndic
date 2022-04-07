@@ -9,9 +9,9 @@ namespace syndic.Controllers
     [ApiController]
     public class NoteController : ControllerBase
     {
-        IServicePublication<Note> service;
+        IService<Note> service;
 
-        public NoteController(IServicePublication<Note> service)
+        public NoteController(IService<Note> service)
         {
             this.service = service;
         }
@@ -30,13 +30,8 @@ namespace syndic.Controllers
             }
             return Ok(result);
         }
-        [HttpGet("Dossier/{id}")]
-        public IActionResult rechercheParDossier(int id)
-        {
-
-            return Ok(service.rechercheParDossier(id));
-
-        }
+       
+     
         [HttpPost]
         public void creer(Note note)
         {

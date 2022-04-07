@@ -5,11 +5,11 @@ using Syndic.Service.Abstraction;
 
 namespace Syndic.Services
 {
-    public class DossierService: IServiceDossier
+    public class DossierService: IService<Dossier>
     {
-        IRepositoryDossier repository;
+        IRepository<Dossier> repository;
 
-        public DossierService(IRepositoryDossier repository)
+        public DossierService(IRepository<Dossier> repository)
         {
             this.repository = repository;
         }
@@ -44,18 +44,7 @@ namespace Syndic.Services
         {
             repository.suprimer(id);
         }
-        public IEnumerable<Dossier> rechercheParTitle(string title)
-        {
-            return repository.rechercheParTitle(title);
-        }
-        public IEnumerable<Dossier> rechercheParCategorie(int id)
-        {
-            return repository.rechercheParCategorie(id);   
-        }
-        public IEnumerable<Dossier> rechercheParStatut(int id)
-        {
-            return repository.rechercheParStatut(id);
-        }
+
        
     }
 }

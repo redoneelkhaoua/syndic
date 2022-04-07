@@ -9,10 +9,10 @@ namespace syndic.Controllers
     [ApiController]
     public class DossierController : ControllerBase
     {
-        IServiceDossier service;
+        IService<Dossier> service;
         IService<Categorie> categorieService;
         IService<Statut> statutService;
-        public DossierController(IServiceDossier service,IService<Categorie>  _categorieService, IService<Statut> _statutService)
+        public DossierController(IService<Dossier> service,IService<Categorie>  _categorieService, IService<Statut> _statutService)
         {
             this.service = service;
             this.categorieService = _categorieService;
@@ -63,16 +63,7 @@ namespace syndic.Controllers
         {
             service.suprimer(id);
         }
-        [HttpGet("title/{title}")]
-        public IActionResult rechercheParTitle(string title)
-        {
-            var result = service.rechercheParTitle(title);
-            if (result == null)
-            {
-                return NotFound();
-            }
-            return Ok(result);
-        }
+     
         
     }
 }

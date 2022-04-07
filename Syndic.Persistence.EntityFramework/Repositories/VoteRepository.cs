@@ -1,4 +1,5 @@
-﻿using Syndic.domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using System;
 using System.Collections.Generic;
@@ -42,13 +43,20 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public Vote rechercheParId(int id)
         {
-            var vote = _context.Votes.FirstOrDefault(s => s.IdVote == id);
+            var vote = _context.Votes
+              
+                .Include(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
+                .Include(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(vote => vote.Choixes)
+                .FirstOrDefault(s => s.IdVote == id);
             return vote;
         }
 
         public IEnumerable<Vote> rechercherTout()
         {
-            return _context.Votes.ToList();
+            return _context.Votes.Include(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
+                .Include(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(vote => vote.Choixes);
 
         }
 

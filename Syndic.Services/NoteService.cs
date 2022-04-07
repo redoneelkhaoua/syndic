@@ -6,11 +6,11 @@ using Syndic.Service.Abstraction;
 
 namespace Syndic.Services
 {
-    public class NoteService : IServicePublication<Note>
+    public class NoteService : IService<Note>
     {
-        IRepositoryPublication<Note> repository;
+        IRepository<Note> repository;
 
-        public NoteService(IRepositoryPublication<Note> repository)
+        public NoteService(IRepository<Note> repository)
         {
             this.repository = repository;
         }
@@ -29,12 +29,7 @@ namespace Syndic.Services
             repository.modifier(id, model);
         }
 
-        public IEnumerable<Note> rechercheParDossier(int id)
-        {
-            Guard.Against.NegativeOrZero(id, nameof(id));
-            return repository.rechercheParDossier(id);
-
-        }
+    
 
         public Note rechercheParId(int id)
         {

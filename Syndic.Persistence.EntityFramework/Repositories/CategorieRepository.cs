@@ -1,4 +1,5 @@
-﻿using Syndic.domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using System;
 using System.Collections.Generic;
@@ -33,9 +34,13 @@ namespace Syndic.Persistence.EntityFramework.Repositories
               context.SaveChanges();
         }
 
-        public Categorie rechercheParId(int id)
+        public Categorie? rechercheParId(int id)
         {
-            var categorie= context.Categories.FirstOrDefault(s => s.IdCategorie == id);
+            var categorie= context.Categories.Include(categorie => categorie.Dossiers )
+                
+                .ThenInclude(dossier => dossier.StatutNavigation)
+                .ThenInclude(statut => statut.Dossiers)
+                .FirstOrDefault(s => s.IdCategorie == id);
            
           
             return categorie;
@@ -43,7 +48,13 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public IEnumerable<Categorie> rechercherTout()
         {
-            return  context.Categories.ToList();
+            return  context.Categories.Include(categorie => categorie.Dossiers).ThenInclude(dossier => dossier.Fichiers)
+                .Include(categorie => categorie.Dossiers).ThenInclude(dossier => dossier.Notes)
+                .Include(categorie => categorie.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote =>vote.Resultats).ThenInclude(res=>res.IdChoixNavigation)
+                .Include(categorie => categorie.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(categorie => categorie.Dossiers).ThenInclude(dossier => dossier.Votes).ThenInclude(vote => vote.Choixes)
+                .Include(categorie => categorie.Dossiers).ThenInclude(dossier => dossier.Fichiers)
+                .ToList();
         }
 
         public void suprimer(int id)

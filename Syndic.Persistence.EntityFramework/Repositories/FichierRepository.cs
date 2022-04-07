@@ -1,4 +1,5 @@
-﻿using Syndic.domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Syndic.Persistence.EntityFramework.Repositories
 {
-    public class FichierRepository : IRepositoryPublication<Fichier>
+    public class FichierRepository : IRepository<Fichier>
     {
         SyndicContext context;
 
@@ -40,19 +41,19 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             context.SaveChanges();
         }
 
-        public IEnumerable<Fichier> rechercheParDossier(int id)
-        {
-            return context.Fichiers.ToList().Where(e=>e.IdDossier==id);
-        }
+   
 
-        public Fichier rechercheParId(int id)
+        public Fichier? rechercheParId(int id)
         {
-            return context.Fichiers.FirstOrDefault(s => s.IdFichier == id);
+            return context.Fichiers
+                .Include(fichier=>fichier.IdDossierNavigation)
+
+                .FirstOrDefault(s => s.IdFichier == id);
         }
 
         public IEnumerable<Fichier> rechercherTout()
         {
-            return context.Fichiers.ToList();
+            return context.Fichiers.Include(fichier => fichier.IdDossierNavigation);
         }
 
         public void suprimer(int id)

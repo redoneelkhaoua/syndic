@@ -9,9 +9,9 @@ namespace syndic.Controllers
     [ApiController]
     public class FichierController : ControllerBase
     {
-        IServicePublication<Fichier> service;
+        IService<Fichier> service;
 
-        public FichierController(IServicePublication<Fichier> service)
+        public FichierController(IService<Fichier> service)
         {
             this.service = service;
         }
@@ -45,12 +45,6 @@ namespace syndic.Controllers
         {
             service.suprimer(id);
         }
-        [HttpGet("Dossier/{id}")]
-        public IActionResult rechercheParDossier(int id)
-        {
-
-            return Ok(service.rechercheParDossier(id));
-
-        }
+    
     }
 }

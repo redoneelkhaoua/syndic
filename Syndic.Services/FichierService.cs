@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Syndic.Services
 {
-    public class FichierService : IServicePublication<Fichier>
+    public class FichierService : IService<Fichier>
     {
-        IRepositoryPublication<Fichier> repository;
+        IRepository<Fichier> repository;
 
-        public FichierService(IRepositoryPublication<Fichier> repository)
+        public FichierService(IRepository<Fichier> repository)
         {
             this.repository = repository;
         }
@@ -32,11 +32,7 @@ namespace Syndic.Services
             repository.modifier(id, model);
         }
 
-        public IEnumerable<Fichier> rechercheParDossier(int id)
-        {
-            Guard.Against.NegativeOrZero(id, nameof(id));
-            return repository.rechercheParDossier(id);
-        }
+    
 
         public Fichier rechercheParId(int id)
         {

@@ -1,4 +1,5 @@
-﻿using Syndic.domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
         public IEnumerable<Resultat> rechercherTout()
         {
-            return _context.Resultats.ToList();
+            return _context.Resultats.Include(res=>res.IdParticipantNavigation).Include(res => res.IdVoteNavigation).ToList();
         }
 
         public void suprimer(int id)

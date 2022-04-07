@@ -1,4 +1,5 @@
-﻿using Syndic.domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Syndic.Persistence.EntityFramework.Repositories
 { 
-    public class DossierRepository : IRepositoryDossier
+    public class DossierRepository : IRepository<Dossier>
     {
          SyndicContext context;
       
@@ -25,6 +26,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
             model.DateCreation = DateTime.Now;
             model.IdDossier=context.Dossiers.Count()+1;
+            
               context.Add(model);
        
                context.SaveChanges();
@@ -43,14 +45,28 @@ namespace Syndic.Persistence.EntityFramework.Repositories
               context.SaveChanges();
           }
 
-          public Dossier rechercheParId(int id)
+          public Dossier? rechercheParId(int id)
           {
-              return context.Dossiers.FirstOrDefault(s => s.IdDossier == id);
+             return context.Dossiers.Include(dossier => dossier.Fichiers)
+                .Include(dossier => dossier.Notes)
+                .Include(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
+                .Include(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(dossier => dossier.Votes).ThenInclude(vote => vote.Choixes)
+                .Include(dossier => dossier.Fichiers)
+                .FirstOrDefault(s => s.IdDossier == id);
+         
+           
           }
 
           public IEnumerable<Dossier> rechercherTout()
           {
-              return context.Dossiers.ToList();
+              return context.Dossiers
+                .Include(dossier => dossier.Fichiers)
+                .Include(dossier => dossier.Notes)
+                .Include(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
+                .Include(dossier => dossier.Votes).ThenInclude(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(dossier => dossier.Votes).ThenInclude(vote => vote.Choixes)
+                .Include(dossier => dossier.Fichiers);
           }
 
           public void suprimer(int id)
@@ -58,20 +74,6 @@ namespace Syndic.Persistence.EntityFramework.Repositories
               context.Remove(rechercheParId(id));
               context.SaveChanges();
           }
-          public    IEnumerable< Dossier> rechercheParTitle(string title)
-          { 
-            IEnumerable<Dossier>   result = context.Dossiers.Where(s => s.Titre == title);
-            return result;
-          }
-          public IEnumerable<Dossier> rechercheParCategorie(int id)
-          {
-            IEnumerable<Dossier> result = context.Dossiers.Where(s => s.Categorie == id);
-            return result;
-        }
-          public IEnumerable<Dossier> rechercheParStatut(int id)
-          {
-            IEnumerable<Dossier> result = context.Dossiers.Where(s => s.Statut == id);
-            return result;
-        }
+     
       }
 }
