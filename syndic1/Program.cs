@@ -5,6 +5,12 @@ using Syndic.Persistence.EntityFramework;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+var connectionstring = builder.Configuration.GetConnectionString("SyndicDatabase");
+builder.Services.AddDbContext<SyndicContext>(o =>
+{
+    o.UseNpgsql(connectionstring);
+});
 
 
 builder.Services.AddSyndic();

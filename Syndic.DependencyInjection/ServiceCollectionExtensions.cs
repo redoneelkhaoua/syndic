@@ -14,7 +14,7 @@ namespace Syndic.DependencyInjection
     public static class ServiceCollectionExtensions
     {
         static IConfiguration  configuration;
-
+        
       
 
         public static IServiceCollection AddSyndic(this IServiceCollection services)
@@ -42,11 +42,12 @@ namespace Syndic.DependencyInjection
           options => {
               options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
           });
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-            services.AddDbContext<SyndicContext>(o =>
-            {
-                o.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic;Pooling=true;Connection Lifetime=0;");
-            });
+
+
+
+            
+
+
             return services;
         }
     }
