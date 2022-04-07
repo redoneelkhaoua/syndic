@@ -12,7 +12,10 @@ builder.Services.AddDbContext<SyndicContext>(o =>
     o.UseNpgsql(connectionstring);
 });
 
-
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 builder.Services.AddSyndic();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -29,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-
+app.UseCors("corsapp");
 app.MapControllers();
 
 app.Run();
