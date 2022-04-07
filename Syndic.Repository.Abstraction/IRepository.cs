@@ -8,11 +8,11 @@ namespace Syndic.Repository.Abstraction
 {
     public interface IRepository<Model>
     {
-        public IEnumerable<Model> rechercherTout();
-        public Model rechercheParId(int id);
-        public void creer(Model model);
-        public void suprimer(int id);
-        public void modifier(int id, Model model);
+        public IEnumerable<Model> getAll();
+        public Model findById(int id);
+        public void create(Model model);
+        public void delete(int id);
+        public void update(int id, Model model);
         
     }
 }

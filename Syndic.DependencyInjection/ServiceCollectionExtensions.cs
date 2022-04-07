@@ -19,22 +19,22 @@ namespace Syndic.DependencyInjection
 
         public static IServiceCollection AddSyndic(this IServiceCollection services)
         {
-            services.AddTransient<IRepository<Fichier>, FichierRepository>();
-            services.AddTransient<IService<Fichier>, FichierService>();
+            services.AddTransient<IRepository<file>, FileRepository>();
+            services.AddTransient<IService<file>, FileService>();
             services.AddTransient<IRepository<Note>, NoteRepository>();
             services.AddTransient<IService<Note>, NoteService>();
-            services.AddTransient<IRepository<Statut>, StatutRepository>();
-            services.AddTransient<IService<Statut>, StatutService>();
-            services.AddTransient<IRepository<Categorie>,CategorieRepository>();
-            services.AddTransient<IService<Categorie>, CategorieService>();
-            services.AddTransient<IRepository<Dossier>, DossierRepository>();
-            services.AddTransient<IService<Dossier>, DossierService>();
+            services.AddTransient<IRepository<Status>, StatusRepository>();
+            services.AddTransient<IService<Status>, StatusService>();
+            services.AddTransient<IRepository<Category>,CategoryRepository>();
+            services.AddTransient<IService<Category>, CategoryService>();
+            services.AddTransient<IRepository<Case>, CaseRepository>();
+            services.AddTransient<IService<Case>, CaseService>();
             services.AddTransient<IService<Vote>, VoteService>();
             services.AddTransient<IRepository<Vote>, VoteRepository>();
-            services.AddTransient<IService<Choix>, ChoixService>();
-            services.AddTransient<IRepository<Choix>, ChoixRepository>();
-            services.AddTransient<IService<Resultat>, ResultatService>();
-            services.AddTransient<IRepository<Resultat>, ResultatRepository>();
+            services.AddTransient<IService<Choice>, ChoiceService>();
+            services.AddTransient<IRepository<Choice>, ChoiceRepository>();
+            services.AddTransient<IService<results>, resultsService>();
+            services.AddTransient<IRepository<results>, resultsRepository>();
             services.AddTransient<IService<Participant>, ParticipantService>();
             services.AddTransient<IRepository<Participant>, ParticipantRepository>();
             services.AddMvc()

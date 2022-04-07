@@ -18,16 +18,16 @@ namespace syndic.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Vote> RechercheTout()
+        public ActionResult<Vote> getAllVotes()
         {
-            return Ok(_service.rechercherTout());
+            return Ok(_service.getAll());
         }
 
 
         [HttpGet("{id}")]
-        public IActionResult REchercheParId(int id)
+        public IActionResult findById(int id)
         {
-            var result = _service.rechercheParId(id);
+            var result = _service.findById(id);
             if (result == null)
             {
                 return NotFound();
@@ -38,21 +38,21 @@ namespace syndic.Controllers
 
        
         [HttpPost]
-        public void creer(Vote vote)
+        public void create(Vote vote)
         {
-            _service.creer(vote);
+            _service.create(vote);
         }
 
 
         [HttpPut("{id}")]
-        public void Modifier(int id, Vote vote)
+        public void update(int id, Vote vote)
         {
-            _service.modifier(id, vote);
+            _service.update(id, vote);
         }
         [HttpDelete("{id}")]
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            _service.suprimer(id);
+            _service.delete(id);
         }
 
     }

@@ -18,39 +18,39 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             this.context = context;
         }
 
-        public void creer(Note model)
+        public void create(Note model)
         {
-            model.DateCreation = DateTime.Now;
+            model.creationDate = DateTime.Now;
             model.IdNote = context.Notes.Count() + 1;
             context.Add(model);
             context.SaveChanges();
         }
 
-        public void modifier(int id, Note model)
+        public void update(int id, Note model)
         {
-            var note = rechercheParId(id);
+            var note = findById(id);
             note.note= model.note;
-            note.DateCreation = model.DateCreation;
+            note.creationDate = model.creationDate;
             note.Type = model.Type;
-            note.IdDossier= model.IdDossier;
+            note.IdCase= model.IdCase;
             context.SaveChanges();
         }
 
-        public Note? rechercheParId(int id)
+        public Note? findById(int id)
         {
             return context.Notes
-                .Include(note => note.IdDossierNavigation)
+                .Include(note => note.IdCaseNavigation)
                 .FirstOrDefault(s => s.IdNote == id);
         }
 
-        public IEnumerable<Note> rechercherTout()
+        public IEnumerable<Note> getAll()
         {
-            return context.Notes.Include(note => note.IdDossierNavigation);
+            return context.Notes.Include(note => note.IdCaseNavigation);
         }
 
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            context.Remove(rechercheParId(id));
+            context.Remove(findById(id));
              context.SaveChanges();
         }
 

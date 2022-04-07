@@ -16,14 +16,14 @@ namespace syndic.Controllers
             this.service = service;
         }
         [HttpGet]
-        public ActionResult<Note> RechercheTout()
+        public ActionResult<Note> getAllNotes()
         {
-            return Ok(service.rechercherTout());
+            return Ok(service.getAll());
         }
         [HttpGet("{id}")]
-        public IActionResult REchercheParId(int id)
+        public IActionResult findNoteById(int id)
         {
-            var result = service.rechercheParId(id);
+            var result = service.findById(id);
             if (result == null)
             {
                 return NotFound();
@@ -33,19 +33,19 @@ namespace syndic.Controllers
        
      
         [HttpPost]
-        public void creer(Note note)
+        public void create(Note note)
         {
-            service.creer(note);
+            service.create(note);
         }
         [HttpPut("{id}")]
-        public void Modifier(int id, Note note)
+        public void update(int id, Note note)
         {
-            service.modifier(id, note);
+            service.update(id, note);
         }
         [HttpDelete("{id}")]
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            service.suprimer(id);
+            service.delete(id);
         }
     }
 }

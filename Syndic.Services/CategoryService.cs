@@ -10,42 +10,42 @@ using System.Threading.Tasks;
 
 namespace Syndic.Services
 { 
-    public class CategorieService : IService<Categorie>
+    public class CategoryService : IService<Category>
     {
-        IRepository<Categorie> repository;
+        IRepository<Category> repository;
 
-        public CategorieService(IRepository<Categorie> repository)
+        public CategoryService(IRepository<Category> repository)
         {
             this.repository = repository;
         }
 
-        public void creer(Categorie model)
+        public void create(Category model)
         {
             Guard.Against.Null(model, nameof(model));
-             repository.creer(model);
+             repository.create(model);
         }
 
-        public void modifier(int id, Categorie model)
+        public void update(int id, Category model)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             Guard.Against.Null(model, nameof(model));
-             repository.modifier(id, model);
+             repository.update(id, model);
         }
 
-        public Categorie rechercheParId(int id)
+        public Category findById(int id)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
-            return repository.rechercheParId(id);
+            return findById(id);
         }
 
-        public IEnumerable<Categorie> rechercherTout()
+        public IEnumerable<Category> getAll()
         {
-            return repository.rechercherTout();
+            return repository.getAll();
         }
 
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            repository.suprimer(id);
+            repository.delete(id);
         }
 }
 

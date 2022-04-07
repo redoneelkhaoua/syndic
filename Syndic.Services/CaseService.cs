@@ -3,41 +3,39 @@ using Syndic.domain.Models;
 using Syndic.Repository.Abstraction;
 using Syndic.Service.Abstraction;
 
-
 namespace Syndic.Services
 {
-    public class NoteService : IService<Note>
+    public class CaseService: IService<Case>
     {
-        IRepository<Note> repository;
+        IRepository<Case> repository;
 
-        public NoteService(IRepository<Note> repository)
+        public CaseService(IRepository<Case> repository)
         {
             this.repository = repository;
         }
-      
 
-        public void create(Note model)
+        public void create(Case model)
         {
+
             Guard.Against.Null(model, nameof(model));
+
             repository.create(model);
         }
 
-        public void update(int id, Note model)
+        public void update(int id, Case model)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             Guard.Against.Null(model, nameof(model));
             repository.update(id, model);
         }
 
-    
-
-        public Note findById(int id)
+        public Case findById(int id)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             return repository.findById(id);
         }
 
-        public IEnumerable<Note> getAll()
+        public IEnumerable<Case> getAll()
         {
             return repository.getAll();
         }
@@ -47,5 +45,6 @@ namespace Syndic.Services
             repository.delete(id);
         }
 
+       
     }
 }

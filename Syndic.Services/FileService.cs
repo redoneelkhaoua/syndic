@@ -10,44 +10,44 @@ using System.Threading.Tasks;
 
 namespace Syndic.Services
 {
-    public class FichierService : IService<Fichier>
+    public class FileService : IService<file>
     {
-        IRepository<Fichier> repository;
+        IRepository<file> repository;
 
-        public FichierService(IRepository<Fichier> repository)
+        public FileService(IRepository<file> repository)
         {
             this.repository = repository;
         }
 
-        public void creer(Fichier model)
+        public void create(file model)
         {
             Guard.Against.Null(model, nameof(model));
-            repository.creer(model);
+            repository.create(model);
         }
 
-        public void modifier(int id, Fichier model)
+        public void update(int id, file model)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             Guard.Against.Null(model, nameof(model));
-            repository.modifier(id, model);
+            repository.update(id, model);
         }
 
     
 
-        public Fichier rechercheParId(int id)
+        public file findById(int id)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
-            return repository.rechercheParId(id);
+            return repository.findById(id);
         }
 
-        public IEnumerable<Fichier> rechercherTout()
+        public IEnumerable<file> getAll()
         {
-            return repository.rechercherTout();
+            return repository.getAll();
         }
 
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            repository.suprimer(id);
+            repository.delete(id);
         }
     }
 }

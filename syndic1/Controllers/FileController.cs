@@ -7,23 +7,23 @@ namespace syndic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FichierController : ControllerBase
+    public class fileController : ControllerBase
     {
-        IService<Fichier> service;
+        IService<file> service;
 
-        public FichierController(IService<Fichier> service)
+        public fileController(IService<file> service)
         {
             this.service = service;
         }
         [HttpGet]
-        public ActionResult<Fichier> RechercheTout()
+        public ActionResult<file> getAll()
         {
-            return Ok(service.rechercherTout());
+            return Ok(service.getAll());
         }
         [HttpGet("{id}")]
-        public IActionResult REchercheParId(int id)
+        public IActionResult finById(int id)
         {
-            var result = service.rechercheParId(id);
+            var result = service.findById(id);
             if (result == null)
             {
                 return NotFound();
@@ -31,19 +31,19 @@ namespace syndic.Controllers
             return Ok(result);
         }
         [HttpPost]
-        public void creer(Fichier fichier)
+        public void create(file file)
         {
-            service.creer(fichier);
+            service.create(file);
         }
         [HttpPut("{id}")]
-        public void Modifier(int id, Fichier fichier)
+        public void update(int id, file file)
         {
-            service.modifier(id, fichier);
+            service.update(id, file);
         }
         [HttpDelete("{id}")]
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            service.suprimer(id);
+            service.delete(id);
         }
     
     }

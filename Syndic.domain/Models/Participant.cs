@@ -7,12 +7,12 @@ namespace Syndic.domain.Models
     {
         public Participant()
         {
-            Resultats = new HashSet<Resultat>();
+            Results = new HashSet<results>();
         }
 
         public int IdParticipant { get; set; }
-        public string? NomParticipant { get; set; }
+        public string? participantName { get; set; }
 
-        public virtual ICollection<Resultat> Resultats { get; set; }
+        public virtual ICollection<results> Results { get; set; }
     }
 }

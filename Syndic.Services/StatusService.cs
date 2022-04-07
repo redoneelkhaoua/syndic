@@ -6,46 +6,42 @@ using Syndic.Service.Abstraction;
 
 namespace Syndic.Services
 {
-    public class NoteService : IService<Note>
+    public class StatusService : IService<Status>
     {
-        IRepository<Note> repository;
+        IRepository<Status> repository;
 
-        public NoteService(IRepository<Note> repository)
+        public StatusService(IRepository<Status> repository)
         {
             this.repository = repository;
         }
-      
 
-        public void create(Note model)
+        public void create(Status model)
         {
             Guard.Against.Null(model, nameof(model));
             repository.create(model);
         }
 
-        public void update(int id, Note model)
+        public void update(int id, Status model)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             Guard.Against.Null(model, nameof(model));
             repository.update(id, model);
         }
 
-    
-
-        public Note findById(int id)
+        public Status findById(int id)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             return repository.findById(id);
         }
 
-        public IEnumerable<Note> getAll()
+        public IEnumerable<Status> getAll()
         {
             return repository.getAll();
         }
 
         public void delete(int id)
-        {
+        { 
             repository.delete(id);
         }
-
     }
 }

@@ -10,41 +10,46 @@ using System.Threading.Tasks;
 
 namespace Syndic.Services
 {
-    public class ResultatService : IService<Resultat>
+    public class ChoiceService : IService<Choice>
     {
-        IRepository<Resultat> _repository;
 
-        public ResultatService(IRepository<Resultat> repository)
+        IRepository<Choice> _repository;
+        public ChoiceService(IRepository<Choice> repository)
         {
             _repository = repository;
         }
-        public void creer(Resultat model)
+
+
+        public void create(Choice model)
         {
             Guard.Against.Null(model, nameof(model));
-            _repository.creer(model);
+            _repository.create(model);
         }
 
-        public void modifier(int id, Resultat model)
+        public void update(int id, Choice model)
         {
+
             Guard.Against.NegativeOrZero(id, nameof(id));
             Guard.Against.Null(model, nameof(model));
-            _repository.modifier(id, model);
+            _repository.update(id, model);
         }
 
-        public Resultat rechercheParId(int id)
+        public Choice findById(int id)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
-            return _repository.rechercheParId(id);
+            return _repository.findById(id);
         }
 
-        public IEnumerable<Resultat> rechercherTout()
+        public IEnumerable<Choice> getAll()
         {
-            return _repository.rechercherTout();
+            return _repository.getAll();
         }
 
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            _repository.suprimer(id);
+            _repository.delete(id);
         }
+
+        
     }
 }

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 
 namespace Syndic.domain.Models
 {
-    public partial class Note
+    public partial class file
     {
-        public int IdNote { get; set; }
-        public string? note { get; set; }
+        public int IdFile { get; set; }
+        public string? Note { get; set; }
+        public string? _file { get; set; }
+
+    
+
         public DateTime? creationDate { get; set; }
         public string? Type { get; set; }
         public int? IdCase { get; set; }

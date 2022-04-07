@@ -22,16 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Models\Categorie.cs">
+    <Compile Update="Models\Category.cs">
       <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
     </Compile>
-    <Compile Update="Models\Choix.cs">
+    <Compile Update="Models\Choice.cs">
       <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
     </Compile>
-    <Compile Update="Models\Dossier.cs">
+    <Compile Update="Models\Case.cs">
       <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
     </Compile>
-    <Compile Update="Models\Fichier.cs">
+    <Compile Update="Models\file.cs">
       <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
     </Compile>
     <Compile Update="Models\Note.cs">
@@ -40,10 +40,10 @@
     <Compile Update="Models\Participant.cs">
       <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
     </Compile>
-    <Compile Update="Models\Resultat.cs">
+    <Compile Update="Models\Results.cs">
       <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
     </Compile>
-    <Compile Update="Models\Statut.cs">
+    <Compile Update="Models\Status.cs">
       <CustomToolNamespace> Syndic.domain.Models</CustomToolNamespace>
     </Compile>
     <Compile Update="Models\Vote.cs">

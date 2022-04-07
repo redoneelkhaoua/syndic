@@ -20,33 +20,33 @@ namespace Syndic.Services
             _repository = repository;
         }
 
-        public void creer(Participant model)
+        public void create(Participant model)
         {
             Guard.Against.Null(model, nameof(model));
-            _repository.creer(model);
+            _repository.create(model);
         }
 
-        public void modifier(int id, Participant model)
+        public void update(int id, Participant model)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
             Guard.Against.Null(model, nameof(model));
-            _repository.modifier(id, model);
+            _repository.update(id, model);
         }
 
-        public Participant rechercheParId(int id)
+        public Participant findById(int id)
         {
             Guard.Against.NegativeOrZero(id, nameof(id));
-            return _repository.rechercheParId(id);
+            return _repository.findById(id);
         }
 
-        public IEnumerable<Participant> rechercherTout()
+        public IEnumerable<Participant> getAll()
         {
-            return _repository.rechercherTout();
+            return _repository.getAll();
         }
 
-        public void suprimer(int id)
+        public void delete(int id)
         {
-            _repository.suprimer(id);
+            _repository.delete(id);
         }
     }
 }

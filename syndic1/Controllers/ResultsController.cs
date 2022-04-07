@@ -8,48 +8,48 @@ namespace syndic.Controllers
     [ApiController]
     public class ResultsController : ControllerBase
     {
-        IService<Resultat> _service;
-        public ResultsController(IService<Resultat> service)
+        IService<results> _service;
+        public ResultsController(IService<results> service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public IActionResult RechercheTout()
+        public IActionResult getAllResults()
         {
-            return Ok(_service.rechercherTout());
+            return Ok(_service.getAll());
         }
 
         
         [HttpGet("{id}")]
-        public IActionResult REchercheParId(int id)
+        public IActionResult findById(int id)
         {
-            var result = _service.rechercheParId(id);
-            if (result == null)
+            var _result = _service.findById(id);
+            if (_result == null)
             {
                 return NotFound();
             }
-            return Ok(result);
+            return Ok(_result);
         }
 
 
 
         [HttpPost]
-        public void creer(Resultat resultat)
+        public void create(results _results)
         {
-            _service.creer(resultat);
+            _service.create(_results);
         }
 
 
         [HttpPut("{id}")]
-        public void Modifier(int id, Resultat resultat)
+        public void update(int id, results _results)
         {
-            _service.modifier(id, resultat);
+            _service.update(id, _results);
         }
         [HttpDelete("{id}")]
-        public void suprimer(int id)
+        public void update(int id)
         {
-            _service.suprimer(id);
+            _service.delete(id);
         }
 
     }

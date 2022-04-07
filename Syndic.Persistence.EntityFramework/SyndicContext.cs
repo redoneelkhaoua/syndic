@@ -18,14 +18,14 @@ namespace Syndic.Persistence.EntityFramework
         {
         }
 
-        public virtual DbSet<Categorie> Categories { get; set; } = null!;
-        public virtual DbSet<Choix> Choixes { get; set; } = null!;
-        public virtual DbSet<Dossier> Dossiers { get; set; } = null!;
-        public virtual DbSet<Fichier> Fichiers { get; set; } = null!;
+        public virtual DbSet<Category> Categories { get; set; } = null!;
+        public virtual DbSet<Choice> Choices { get; set; } = null!;
+        public virtual DbSet<Case> Cases { get; set; } = null!;
+        public virtual DbSet<file> _files { get; set; } = null!;
         public virtual DbSet<Note> Notes { get; set; } = null!;
         public virtual DbSet<Participant> Participants { get; set; } = null!;
-        public virtual DbSet<Resultat> Resultats { get; set; } = null!;
-        public virtual DbSet<Statut> Statuts { get; set; } = null!;
+        public virtual DbSet<results> results { get; set; } = null!;
+        public virtual DbSet<Status> Statues { get; set; } = null!;
         public virtual DbSet<Vote> Votes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,102 +33,102 @@ namespace Syndic.Persistence.EntityFramework
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;Database=Syndic;Pooling=true;Connection Lifetime=0;");
+                optionsBuilder.UseNpgsql("User ID=postgres;Password=0000;Host=localhost;Port=5432;DatabChoices=Syndic;Pooling=true;Connection Lifetime=0;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Categorie>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasKey(e => e.IdCategorie)
-                    .HasName("categorie_pkey");
+                entity.HasKey(e => e.IdCategory)
+                    .HasName("category_pkey");
 
-                entity.ToTable("categorie");
+                entity.ToTable("category");
 
-                entity.Property(e => e.IdCategorie)
+                entity.Property(e => e.IdCategory)
                     .ValueGeneratedNever()
-                    .HasColumnName("id_categorie");
+                    .HasColumnName("id_category");
 
-                entity.Property(e => e.NomCategorie).HasColumnName("nom_categorie");
+                entity.Property(e => e.CategoryName).HasColumnName("category_name");
             });
 
-            modelBuilder.Entity<Choix>(entity =>
+            modelBuilder.Entity<Choice>(entity =>
             {
-                entity.HasKey(e => e.IdChoix)
-                    .HasName("choix_pkey");
+                entity.HasKey(e => e.IdChoice)
+                    .HasName("choice_pkey");
 
-                entity.ToTable("choix");
+                entity.ToTable("choice");
 
-                entity.Property(e => e.IdChoix)
+                entity.Property(e => e.IdChoice)
                     .ValueGeneratedNever()
-                    .HasColumnName("id_choix");
+                    .HasColumnName("id_choice");
 
-                entity.Property(e => e.choix).HasColumnName("choix");
+                entity.Property(e => e.choice).HasColumnName("choice");
 
                 entity.Property(e => e.IdVote).HasColumnName("id_vote");
 
                 entity.HasOne(d => d.IdVoteNavigation)
-                    .WithMany(p => p.Choixes)
+                    .WithMany(p => p.Choices)
                     .HasForeignKey(d => d.IdVote)
-                    .HasConstraintName("choix_id_vote_fkey");
+                    .HasConstraintName("choice_id_vote_fkey");
             });
 
-            modelBuilder.Entity<Dossier>(entity =>
+            modelBuilder.Entity<Case>(entity =>
             {
-                entity.HasKey(e => e.IdDossier)
-                    .HasName("dossier_pkey");
+                entity.HasKey(e => e.IdCase)
+                    .HasName("case_pkey");
 
-                entity.ToTable("dossier");
+                entity.ToTable("case");
 
-                entity.Property(e => e.IdDossier)
+                entity.Property(e => e.IdCase)
                     .ValueGeneratedNever()
-                    .HasColumnName("id_dossier");
+                    .HasColumnName("id_case");
 
-                entity.Property(e => e.Categorie).HasColumnName("categorie");
+                entity.Property(e => e.Category).HasColumnName("category");
 
-                entity.Property(e => e.DateCreation).HasColumnName("date_creation");
+                entity.Property(e => e.creationDate).HasColumnName("creation_Date");
 
                 entity.Property(e => e.Description).HasColumnName("description");
 
-                entity.Property(e => e.Statut).HasColumnName("statut");
+                entity.Property(e => e.Status).HasColumnName("Status");
 
-                entity.HasOne(d => d.CategorieNavigation)
-                    .WithMany(p => p.Dossiers)
-                    .HasForeignKey(d => d.Categorie)
-                    .HasConstraintName("dossier_categorie_fkey");
+                entity.HasOne(d => d.CategoryNavigation)
+                    .WithMany(p => p.Cases)
+                    .HasForeignKey(d => d.Category)
+                    .HasConstraintName("case_category_fkey");
 
-                entity.HasOne(d => d.StatutNavigation)
-                    .WithMany(p => p.Dossiers)
-                    .HasForeignKey(d => d.Statut)
-                    .HasConstraintName("dossier_statut_fkey");
+                entity.HasOne(d => d.StatusNavigation)
+                    .WithMany(p => p.Cases)
+                    .HasForeignKey(d => d.Status)
+                    .HasConstraintName("case_Status_fkey");
             });
 
-            modelBuilder.Entity<Fichier>(entity =>
+            modelBuilder.Entity<file>(entity =>
             {
-                entity.HasKey(e => e.IdFichier)
-                    .HasName("fichier_pkey");
+                entity.HasKey(e => e.IdFile)
+                    .HasName("File_pkey");
 
-                entity.ToTable("fichier");
+                entity.ToTable("File");
 
-                entity.Property(e => e.IdFichier)
+                entity.Property(e => e.IdFile)
                     .ValueGeneratedNever()
-                    .HasColumnName("id_fichier");
+                    .HasColumnName("id_File");
 
-                entity.Property(e => e.DateCreation).HasColumnName("date_creation");
+                entity.Property(e => e.creationDate).HasColumnName("creation_Date");
 
-                entity.Property(e => e.fichier).HasColumnName("fichier");
+                entity.Property(e => e._file).HasColumnName("file");
 
-                entity.Property(e => e.IdDossier).HasColumnName("id_dossier");
+                entity.Property(e => e.IdCase).HasColumnName("id_case");
 
                 entity.Property(e => e.Note).HasColumnName("note");
 
                 entity.Property(e => e.Type).HasColumnName("type");
 
-                entity.HasOne(d => d.IdDossierNavigation)
-                    .WithMany(p => p.Fichiers)
-                    .HasForeignKey(d => d.IdDossier)
-                    .HasConstraintName("fichier_id_dossier_fkey");
+                entity.HasOne(d => d.IdCaseNavigation)
+                    .WithMany(p => p._files)
+                    .HasForeignKey(d => d.IdCase)
+                    .HasConstraintName("File_id_case_fkey");
             });
 
             modelBuilder.Entity<Note>(entity =>
@@ -142,18 +142,18 @@ namespace Syndic.Persistence.EntityFramework
                     .ValueGeneratedNever()
                     .HasColumnName("id_note");
 
-                entity.Property(e => e.DateCreation).HasColumnName("date_creation");
+                entity.Property(e => e.creationDate).HasColumnName("creation_Date");
 
-                entity.Property(e => e.IdDossier).HasColumnName("id_dossier");
+                entity.Property(e => e.IdCase).HasColumnName("id_case");
 
                 entity.Property(e => e.note).HasColumnName("note");
 
                 entity.Property(e => e.Type).HasColumnName("type");
 
-                entity.HasOne(d => d.IdDossierNavigation)
+                entity.HasOne(d => d.IdCaseNavigation)
                     .WithMany(p => p.Notes)
-                    .HasForeignKey(d => d.IdDossier)
-                    .HasConstraintName("note_id_dossier_fkey");
+                    .HasForeignKey(d => d.IdCase)
+                    .HasConstraintName("note_id_dase_fkey");
             });
 
             modelBuilder.Entity<Participant>(entity =>
@@ -167,52 +167,52 @@ namespace Syndic.Persistence.EntityFramework
                     .ValueGeneratedNever()
                     .HasColumnName("id_participant");
 
-                entity.Property(e => e.NomParticipant).HasColumnName("nomparticipant");
+                entity.Property(e => e.participantName).HasColumnName("participant_name");
             });
 
-            modelBuilder.Entity<Resultat>(entity =>
+            modelBuilder.Entity<results>(entity =>
             {
                 entity.HasKey(e => new { e.IdParticipant, e.IdVote })
-                    .HasName("resultat_pkey");
+                    .HasName("results_pkey");
 
-                entity.ToTable("resultat");
+                entity.ToTable("results");
 
                 entity.Property(e => e.IdParticipant).HasColumnName("id_participant");
 
                 entity.Property(e => e.IdVote).HasColumnName("id_vote");
 
-                entity.Property(e => e.IdChoix).HasColumnName("id_choix");
+                entity.Property(e => e.IdChoice).HasColumnName("id_choice");
 
-                entity.HasOne(d => d.IdChoixNavigation)
-                    .WithMany(p => p.Resultats)
-                    .HasForeignKey(d => d.IdChoix)
-                    .HasConstraintName("resultat_id_choix_fkey");
+                entity.HasOne(d => d.IdChoiceNavigation)
+                    .WithMany(p => p.Results)
+                    .HasForeignKey(d => d.IdChoice)
+                    .HasConstraintName("results_id_choice_fkey");
 
                 entity.HasOne(d => d.IdParticipantNavigation)
-                    .WithMany(p => p.Resultats)
+                    .WithMany(p => p.Results)
                     .HasForeignKey(d => d.IdParticipant)
                    
-                    .HasConstraintName("resultat_id_participant_fkey");
+                    .HasConstraintName("results_id_participant_fkey");
 
                 entity.HasOne(d => d.IdVoteNavigation)
-                    .WithMany(p => p.Resultats)
+                    .WithMany(p => p.Results)
                     .HasForeignKey(d => d.IdVote)
                     
-                    .HasConstraintName("resultat_id_vote_fkey");
+                    .HasConstraintName("results_id_vote_fkey");
             });
 
-            modelBuilder.Entity<Statut>(entity =>
+            modelBuilder.Entity<Status>(entity =>
             {
-                entity.HasKey(e => e.IdStatut)
-                    .HasName("statut_pkey");
+                entity.HasKey(e => e.IdStatus)
+                    .HasName("Status_pkey");
 
-                entity.ToTable("statut");
+                entity.ToTable("Status");
 
-                entity.Property(e => e.IdStatut)
+                entity.Property(e => e.IdStatus)
                     .ValueGeneratedNever()
-                    .HasColumnName("id_statut");
+                    .HasColumnName("id_Status");
 
-                entity.Property(e => e.NomStatut).HasColumnName("nom_statut");
+                entity.Property(e => e.statusName).HasColumnName("status_name");
             });
 
             modelBuilder.Entity<Vote>(entity =>
@@ -226,18 +226,18 @@ namespace Syndic.Persistence.EntityFramework
                     .ValueGeneratedNever()
                     .HasColumnName("id_vote");
 
-                entity.Property(e => e.DateCreation).HasColumnName("date_creation");
+                entity.Property(e => e.creationDate).HasColumnName("creation_Date");
 
-                entity.Property(e => e.IdDossier).HasColumnName("id_dossier");
+                entity.Property(e => e.IdCase).HasColumnName("id_dase");
 
-                entity.Property(e => e.Titre).HasColumnName("titre");
+                entity.Property(e => e.Title).HasColumnName("titre");
 
                 entity.Property(e => e.Type).HasColumnName("type");
 
-                entity.HasOne(d => d.IdDossierNavigation)
+                entity.HasOne(d => d.IdCaseNavigation)
                     .WithMany(p => p.Votes)
-                    .HasForeignKey(d => d.IdDossier)
-                    .HasConstraintName("vote_id_dossier_fkey");
+                    .HasForeignKey(d => d.IdCase)
+                    .HasConstraintName("vote_id_dase_fkey");
             });
 
             OnModelCreatingPartial(modelBuilder);

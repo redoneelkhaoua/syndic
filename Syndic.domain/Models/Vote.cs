@@ -7,18 +7,18 @@ namespace Syndic.domain.Models
     {
         public Vote()
         {
-            Choixes = new HashSet<Choix>();
-            Resultats = new HashSet<Resultat>();
+            Choices = new HashSet<Choice>();
+            Results = new HashSet<results>();
         }
 
         public int IdVote { get; set; }
-        public string? Titre { get; set; }
-        public DateTime? DateCreation { get; set; }
+        public string? Title { get; set; }
+        public DateTime? creationDate { get; set; }
         public string? Type { get; set; }
-        public int? IdDossier { get; set; }
+        public int? IdCase { get; set; }
 
-        public virtual Dossier? IdDossierNavigation { get; set; }
-        public virtual ICollection<Choix> Choixes { get; set; }
-        public virtual ICollection<Resultat> Resultats { get; set; }
+        public virtual Case? IdCaseNavigation { get; set; }
+        public virtual ICollection<Choice> Choices { get; set; }
+        public virtual ICollection<results> Results { get; set; }
     }
 }

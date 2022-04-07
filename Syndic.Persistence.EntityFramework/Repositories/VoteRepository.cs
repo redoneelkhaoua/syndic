@@ -12,58 +12,57 @@ namespace Syndic.Persistence.EntityFramework.Repositories
     public class VoteRepository : IRepository<Vote>
     {
         SyndicContext _context;
-        ICollection<Choix> choixes;
+        ICollection<Choice> choicees;
 
 
         public VoteRepository(SyndicContext context)
         {
             _context = context;
-            choixes = new List<Choix>();
+            choicees = new List<Choice>();
         }
-        public void creer(Vote model)
+        public void create(Vote model)
         {
-            //choixes = model.Choixes;
 
-            model.DateCreation = DateTime.Now;
+            model.creationDate = DateTime.Now;
             model.IdVote = _context.Votes.Count() + 1;
             _context.Add(model);
             _context.SaveChanges();
         }
 
-        public void modifier(int id, Vote model)
+        public void update(int id, Vote model)
         {
-            var vote = rechercheParId(id);
-            vote.Titre=model.Titre;
-            vote.DateCreation=model.DateCreation;  
-            vote.IdDossier=model.IdDossier;
+            var vote = findById(id);
+            vote.Title=model.Title;
+            vote.creationDate=model.creationDate;  
+            vote.IdCase=model.IdCase;
             vote.Type=model.Type;
             _context.SaveChanges();
             
         }
 
-        public Vote rechercheParId(int id)
+        public Vote findById(int id)
         {
             var vote = _context.Votes
               
-                .Include(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
-                .Include(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
-                .Include(vote => vote.Choixes).ThenInclude(choix => choix.Resultats)
+                .Include(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
+                .Include(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(vote => vote.Choices).ThenInclude(choice => choice.Results)
                 .FirstOrDefault(s => s.IdVote == id);
             return vote;
         }
 
-        public IEnumerable<Vote> rechercherTout()
+        public IEnumerable<Vote> getAll()
         {
-                return _context.Votes.Include(vote => vote.Resultats).ThenInclude(res => res.IdChoixNavigation)
-                .Include(vote => vote.Resultats).ThenInclude(res => res.IdParticipantNavigation)
-                .Include(vote => vote.Choixes).ThenInclude(choix=>choix.Resultats);
+                return _context.Votes.Include(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
+                .Include(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
+                .Include(vote => vote.Choices).ThenInclude(choice=>choice.Results);
 
         }
 
-        public void suprimer(int id)
+        public void delete(int id)
         {
             var vote = _context.Votes.Single(e => e.IdVote == id);
-            var choix = _context.Choixes.Single(e => e.IdVote == vote.IdVote);
+            var choice = _context.Choices.Single(e => e.IdVote == vote.IdVote);
 
             _context.Remove(vote);
             _context.SaveChanges();

@@ -16,36 +16,36 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             
                 _context = context;
         }
-        public void creer(Participant model)
+        public void create(Participant model)
         {
             model.IdParticipant = _context.Participants.Count() + 1;
             _context.Add(model);
             _context.SaveChanges();
         }
 
-        public void modifier(int id, Participant model)
+        public void update(int id, Participant model)
         {
-            var participant = rechercheParId(id);
+            var participant = findById(id);
 
-            participant.NomParticipant = model.NomParticipant;
+            participant.participantName = model.participantName;
 
             _context.SaveChanges();
         }
 
-        public Participant rechercheParId(int id)
+        public Participant findById(int id)
         {
             return _context.Participants.FirstOrDefault(s => s.IdParticipant == id);
         }
 
-        public IEnumerable<Participant> rechercherTout()
+        public IEnumerable<Participant> getAll()
         {
             return _context.Participants.ToList();
         }
 
-        public void suprimer(int id)
+        public void delete(int id)
         {
             
-            _context.Remove(rechercheParId(id));
+            _context.Remove(findById(id));
             _context.SaveChanges();
         }
     }
