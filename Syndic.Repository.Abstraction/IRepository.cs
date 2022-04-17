@@ -10,7 +10,7 @@ namespace Syndic.Repository.Abstraction
     {
         public IEnumerable<Model> getAll();
         public Model findById(int id);
-        public void create(Model model);
+        public Model create(Model model);
         public void delete(int id);
         public void update(int id, Model model);
         

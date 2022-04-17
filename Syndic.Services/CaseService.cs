@@ -14,12 +14,12 @@ namespace Syndic.Services
             this.repository = repository;
         }
 
-        public void create(Case model)
+        public Case create(Case model)
         {
 
             Guard.Against.Null(model, nameof(model));
 
-            repository.create(model);
+            return repository.create(model);
         }
 
         public void update(int id, Case model)

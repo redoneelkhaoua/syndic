@@ -16,10 +16,10 @@ namespace Syndic.Services
         }
       
 
-        public void create(Note model)
+        public Note create(Note model)
         {
             Guard.Against.Null(model, nameof(model));
-            repository.create(model);
+           return repository.create(model);
         }
 
         public void update(int id, Note model)

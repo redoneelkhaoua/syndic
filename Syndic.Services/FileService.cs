@@ -19,10 +19,10 @@ namespace Syndic.Services
             this.repository = repository;
         }
 
-        public void create(file model)
+        public file create(file model)
         {
             Guard.Against.Null(model, nameof(model));
-            repository.create(model);
+          return  repository.create(model);
         }
 
         public void update(int id, file model)

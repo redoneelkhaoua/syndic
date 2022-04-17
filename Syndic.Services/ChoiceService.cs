@@ -20,10 +20,10 @@ namespace Syndic.Services
         }
 
 
-        public void create(Choice model)
+        public Choice create(Choice model)
         {
             Guard.Against.Null(model, nameof(model));
-            _repository.create(model);
+          return  _repository.create(model);
         }
 
         public void update(int id, Choice model)

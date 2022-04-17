@@ -15,10 +15,10 @@ namespace Syndic.Services
             this.repository = repository;
         }
 
-        public void create(Status model)
+        public Status create(Status model)
         {
             Guard.Against.Null(model, nameof(model));
-            repository.create(model);
+          return  repository.create(model);
         }
 
         public void update(int id, Status model)

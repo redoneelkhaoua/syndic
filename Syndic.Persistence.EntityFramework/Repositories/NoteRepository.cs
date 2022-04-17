@@ -18,12 +18,13 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             this.context = context;
         }
 
-        public void create(Note model)
+        public Note create(Note model)
         {
             model.creationDate = DateTime.Now;
             model.IdNote = context.Notes.Count() + 1;
             context.Add(model);
             context.SaveChanges();
+            return model;
         }
 
         public void update(int id, Note model)

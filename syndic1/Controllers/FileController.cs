@@ -31,9 +31,11 @@ namespace syndic.Controllers
             return Ok(result);
         }
         [HttpPost]
-        public void create(file file)
+
+        public file create(file file)
         {
-            service.create(file);
+           return service.create(file);
+            
         }
         [HttpPut("{id}")]
         public void update(int id, file file)

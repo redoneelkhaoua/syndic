@@ -38,9 +38,9 @@ namespace syndic.Controllers
 
        
         [HttpPost]
-        public void create(Vote vote)
+        public Vote create(Vote vote)
         {
-            _service.create(vote);
+           return _service.create(vote);
         }
 
 

@@ -33,9 +33,9 @@ namespace syndic.Controllers
        
      
         [HttpPost]
-        public void create(Note note)
+        public IActionResult create(Note note)
         {
-            service.create(note);
+           return Ok(service.create(note));
         }
         [HttpPut("{id}")]
         public void update(int id, Note note)

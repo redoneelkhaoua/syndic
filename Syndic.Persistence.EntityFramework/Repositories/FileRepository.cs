@@ -18,12 +18,13 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             this.context = context;
         }
 
-        public void create(file model)
+        public file create(file model)
         {
             model.creationDate = DateTime.Now;
             model.IdFile = context._files.Count() + 1;
             context.Add(model);
             context.SaveChanges();
+            return model;
         }
 
         public void update(int id, file model)

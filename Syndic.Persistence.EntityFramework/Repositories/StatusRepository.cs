@@ -19,11 +19,12 @@ namespace Syndic.Persistence.EntityFramework.Repositories
              this.context = context;
          }
 
-         public void create(Status model)
+         public Status create(Status model)
          {
              model.IdStatus=context.Statues.Count()+1;
              context.Add(model);
              context.SaveChanges();
+            return model;
          }
 
          public void update(int id, Status model)

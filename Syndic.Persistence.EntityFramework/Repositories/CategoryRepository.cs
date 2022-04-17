@@ -18,11 +18,13 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             this.context = context;
         }
 
-        public void create(Category model)
+        public Category create(Category model)
         {
             model.IdCategory = context.Categories.Count() + 1;
             context.Add(model);
             context.SaveChanges();
+
+            return model;
         }
 
         public void update(int id, Category model)

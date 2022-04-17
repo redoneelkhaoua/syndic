@@ -49,9 +49,9 @@ namespace syndic.Controllers
             return Ok(result);
         }
         [HttpPost]
-        public void create(Case Case)
+        public IActionResult create(Case Case)
         {
-            service.create(Case);
+            return Ok(service.create(Case));
         }
         [HttpPut("{id}")]
         public void update(int id, Case Case)

@@ -17,10 +17,10 @@ namespace Syndic.Services
         {
             _repository = repository;
         }
-        public void create(Vote model)
+        public Vote create(Vote model)
         {
             Guard.Against.Null(model, nameof(model));
-            _repository.create(model);
+           return _repository.create(model);
         }
 
         public void update(int id, Vote model)

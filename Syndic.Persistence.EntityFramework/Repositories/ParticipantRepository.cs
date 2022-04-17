@@ -16,11 +16,12 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             
                 _context = context;
         }
-        public void create(Participant model)
+        public Participant create(Participant model)
         {
             model.IdParticipant = _context.Participants.Count() + 1;
             _context.Add(model);
             _context.SaveChanges();
+            return model;
         }
 
         public void update(int id, Participant model)

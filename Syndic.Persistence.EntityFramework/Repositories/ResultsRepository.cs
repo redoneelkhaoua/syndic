@@ -19,10 +19,11 @@ namespace Syndic.Persistence.EntityFramework.Repositories
         {
             _context = context;
         }
-        public void create(results model)
+        public results create(results model)
         {
             _context.Add(model);
             _context.SaveChanges();
+            return model;   
         }
 
         public void update(int id, results model)

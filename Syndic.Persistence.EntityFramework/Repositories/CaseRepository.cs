@@ -20,7 +20,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
               
           }
 
-          public void create(Case model)
+          public Case create(Case model)
           {
             
 
@@ -30,6 +30,7 @@ namespace Syndic.Persistence.EntityFramework.Repositories
               context.Add(model);
        
                context.SaveChanges();
+            return model;
           }
 
           public void update(int id, Case model)
@@ -47,27 +48,29 @@ namespace Syndic.Persistence.EntityFramework.Repositories
 
           public Case? findById(int id)
           {
-             return context.Cases.Include(dossier => dossier._files)
-                .Include(cases => cases.Notes)
-                .Include(cases => cases.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
-                .Include(cases => cases.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
-                .Include(cases => cases.Votes).ThenInclude(vote => vote.Choices)
-                .Include(cases => cases._files)
-                .FirstOrDefault(s => s.IdCase == id);
-         
-           
-          }
+            return context.Cases.Include(dossier => dossier._files)
+               .Include(cases => cases.Notes)
+               .Include(_case => _case.CategoryNavigation)
+               .Include(_case => _case.StatusNavigation)
+               .Include(cases => cases.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
+               .Include(cases => cases.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
+               .Include(cases => cases.Votes).ThenInclude(vote => vote.Choices)
+               .Include(cases => cases._files)
+               .FirstOrDefault(s => s.IdCase == id);
+        }
 
           public IEnumerable<Case> getAll()
-        { 
-              return context.Cases
-                .Include(_case => _case._files)
-                .Include(_case => _case.Notes)
-                .Include(_case => _case.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
-                .Include(_case => _case.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
-                .Include(_case => _case.Votes).ThenInclude(vote => vote.Choices)
-                .Include(_case => _case._files);
-          }
+        {
+            return context.Cases
+              .Include(_case => _case._files)
+              .Include(_case => _case.Notes)
+              .Include(_case => _case.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
+              .Include(_case => _case.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
+              .Include(_case => _case.Votes).ThenInclude(vote => vote.Choices)
+              .Include(_case => _case._files)
+              .Include(_case => _case.CategoryNavigation)
+              .Include(_case => _case.StatusNavigation);
+        }
 
           public void delete(int id)
           {

@@ -18,10 +18,10 @@ namespace Syndic.Services
         {
             _repository = repository;
         }
-        public void create(results model)
+        public results create(results model)
         {
             Guard.Against.Null(model, nameof(model));
-            _repository.create(model);
+         return   _repository.create(model);
         }
 
         public void update(int id, results model)
