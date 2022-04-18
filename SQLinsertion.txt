@@ -1,0 +1,139 @@
+Insertion de categorie--------------------------
+
+1)
+INSERT INTO public.category (
+id_category, category_name) VALUES (
+'1'::integer, 'Urgent'::text)
+ returning id_category;
+
+2)
+INSERT INTO public.category (
+category_name, id_category) VALUES (
+'Vote'::text, '2'::integer)
+ returning id_category;
+
+3)
+INSERT INTO public.category (
+id_category, category_name) VALUES (
+'3'::integer, 'Assemblée générale'::text)
+ returning id_category;
+
+
+Insertion de statut---------------------------------
+
+1) 
+INSERT INTO public."Status" (
+"id_Status", status_name) VALUES (
+'1'::integer, 'En attente'::text)
+ returning "id_Status";
+
+2)
+INSERT INTO public."Status" (
+"id_Status", status_name) VALUES (
+'2'::integer, 'Incomplet'::text)
+ returning "id_Status";
+
+3)
+INSERT INTO public."Status" (
+"id_Status", status_name) VALUES (
+'3'::integer, 'Complet'::text)
+ returning "id_Status";
+
+
+
+Insertion de dossier---------------------------------
+
+1)
+INSERT INTO public."case" (
+id_case, "Title", category, "Status") VALUES (
+'2'::integer, 'Éclairage'::text, '3'::integer, '2'::integer)
+ returning id_case;
+
+2)
+INSERT INTO public."case" (
+id_case, "Title", "Status", category) VALUES (
+'1'::integer, 'Fuite  d''eau'::text, '1'::integer, '2'::integer)
+ returning id_case;
+
+Insertion de participant-------------------------------
+
+1)
+INSERT INTO public.participant (
+id_participant, participant_name) VALUES (
+'1'::integer, 'participant-1'::text)
+ returning id_participant;
+
+2)
+INSERT INTO public.participant (
+id_participant, participant_name) VALUES (
+'2'::integer, 'participant-2'::text)
+ returning id_participant;
+
+3)
+INSERT INTO public.participant (
+id_participant, participant_name) VALUES (
+'3'::integer, 'participant-3'::text)
+ returning id_participant;
+
+4)
+INSERT INTO public.participant (
+id_participant, participant_name) VALUES (
+'4'::integer, 'participant-4'::text)
+ returning id_participant;
+
+
+Insertion de Vote-------------------------------
+
+1)
+INSERT INTO public.vote (
+id_vote, "creation_Date", titre, type, id_dase) VALUES (
+'1'::integer, '2022-04-17 22:15:26.501361'::timestamp without time zone, 'Changement de peinture'::text, 'vote'::text, '1'::integer)
+ returning id_vote;
+
+Insertion de choice-------------------------------
+
+1)
+INSERT INTO public.choice (
+id_choice, id_vote, choice) VALUES (
+'1'::integer, '1'::integer, 'rouge'::text)
+ returning id_choice;
+
+2)
+INSERT INTO public.choice (
+id_choice, choice, id_vote) VALUES (
+'2'::integer, 'gris'::text, '1'::integer)
+ returning id_choice;
+
+3)
+INSERT INTO public.choice (
+id_choice, choice, id_vote) VALUES (
+'3'::integer, 'blanc'::text, '1'::integer)
+ returning id_choice;
+
+Insertion de results-------------------------------
+
+1)
+INSERT INTO public.results (
+id_vote, id_participant, id_choice) VALUES (
+'1'::integer, '1'::integer, '1'::integer)
+ returning id_vote,id_participant;
+
+2)
+INSERT INTO public.results (
+id_vote, id_participant, id_choice) VALUES (
+'1'::integer, '2'::integer, '2'::integer)
+ returning id_vote,id_participant;
+
+3)
+INSERT INTO public.results (
+id_vote, id_participant, id_choice) VALUES (
+'1'::integer, '3'::integer, '2'::integer)
+ returning id_vote,id_participant;
+
+Insertion de note-------------------------------
+
+1)
+INSERT INTO public.note (
+id_note, "creation_Date", type, id_case, note) VALUES (
+'1'::integer, '2022-04-17 22:15:26.501361'::timestamp without time zone, 'note'::text, '1'::integer, 'Resolution de problem d''electriciter de l''appartement 11  , aprés un cout de circuit nous avons appelé un tricien ...'::text)
+ returning id_note;

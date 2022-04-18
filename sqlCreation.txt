@@ -1,0 +1,91 @@
+ 1) CREATE TABLE category (
+          id_category integer NOT NULL,
+          category_name text NULL,
+          CONSTRAINT category_pkey PRIMARY KEY (id_category)
+      ); 
+
+
+ 2) CREATE TABLE "Status" (
+          "id_Status" integer NOT NULL,
+          status_name text NULL,
+          CONSTRAINT "Status_pkey" PRIMARY KEY ("id_Status")
+      );
+
+
+ 3) CREATE TABLE "case" (
+          id_case integer NOT NULL,
+          "Title" text NOT NULL,
+          description text NULL,
+          "creation_Date" timestamp without time zone NULL,
+          category integer NULL,
+          "Status" integer NULL,
+          CONSTRAINT case_pkey PRIMARY KEY (id_case),
+          CONSTRAINT case_category_fkey FOREIGN KEY (category) REFERENCES category (id_category),
+          CONSTRAINT "case_Status_fkey" FOREIGN KEY ("Status") REFERENCES "Status" ("id_Status")
+      );
+
+
+
+
+
+  4) CREATE TABLE vote (
+          id_vote integer NOT NULL,
+          titre text NULL,
+          "creation_Date" timestamp without time zone NULL,
+          type text NULL,
+          id_dase integer NULL,
+          CONSTRAINT vote_pkey PRIMARY KEY (id_vote),
+          CONSTRAINT vote_id_dase_fkey FOREIGN KEY (id_dase) REFERENCES "case" (id_case)
+      );
+
+  5)    CREATE TABLE "File" (
+          "id_File" integer NOT NULL,
+          note text NULL,
+          file text NULL,
+          "creation_Date" timestamp without time zone NULL,
+          type text NULL,
+          id_case integer NULL,
+          CONSTRAINT "File_pkey" PRIMARY KEY ("id_File"),
+          CONSTRAINT "File_id_case_fkey" FOREIGN KEY (id_case) REFERENCES "case" (id_case)
+      );
+
+ 6) CREATE TABLE note (
+          id_note integer NOT NULL,
+          note text NULL,
+          "creation_Date" timestamp without time zone NULL,
+          type text NULL,
+          id_case integer NULL,
+          CONSTRAINT note_pkey PRIMARY KEY (id_note),
+          CONSTRAINT note_id_dase_fkey FOREIGN KEY (id_case) REFERENCES "case" (id_case)
+      );
+
+
+7) CREATE TABLE choice (
+          id_choice integer NOT NULL,
+          choice text NULL,
+          id_vote integer NULL,
+          CONSTRAINT choice_pkey PRIMARY KEY (id_choice),
+          CONSTRAINT choice_id_vote_fkey FOREIGN KEY (id_vote) REFERENCES vote (id_vote)
+      );
+
+8) CREATE TABLE results (
+          id_vote integer NOT NULL,
+          id_participant integer NOT NULL,
+          id_choice integer NULL,
+          CONSTRAINT results_pkey PRIMARY KEY (id_participant, id_vote),
+          CONSTRAINT results_id_choice_fkey FOREIGN KEY (id_choice) REFERENCES choice (id_choice),
+          CONSTRAINT results_id_participant_fkey FOREIGN KEY (id_participant) REFERENCES participant (id_participant) ON DELETE CASCADE,
+          CONSTRAINT results_id_vote_fkey FOREIGN KEY (id_vote) REFERENCES vote (id_vote) ON DELETE CASCADE
+      );
+
+
+
+9) CREATE TABLE participant (
+          id_participant integer NOT NULL,
+          participant_name text NULL,
+          CONSTRAINT participant_pkey PRIMARY KEY (id_participant)
+      );
+ 
+
+
+ 
