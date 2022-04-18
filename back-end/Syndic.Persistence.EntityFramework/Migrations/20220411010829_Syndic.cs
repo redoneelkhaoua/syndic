@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Syndic.Persistence.EntityFramework.Migrations
 {
-    public partial class syndic : Migration
+    public partial class Syndic : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
