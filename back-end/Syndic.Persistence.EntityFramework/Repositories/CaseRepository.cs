@@ -23,15 +23,22 @@ namespace Syndic.Persistence.EntityFramework.Repositories
           public Case create(Case model)
           {
             
-
             model.creationDate = DateTime.Now;
             model.IdCase=context.Cases.Count()+1;
             
               context.Add(model);
        
                context.SaveChanges();
-            return model;
-          }
+            return context.Cases.Include(dossier => dossier._files)
+               .Include(cases => cases.Notes)
+               .Include(_case => _case.CategoryNavigation)
+               .Include(_case => _case.StatusNavigation)
+               .Include(cases => cases.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
+               .Include(cases => cases.Votes).ThenInclude(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
+               .Include(cases => cases.Votes).ThenInclude(vote => vote.Choices)
+               .Include(cases => cases._files)
+               .FirstOrDefault(s => s.IdCase == model.IdCase);
+        }
 
           public void update(int id, Case model)
           {

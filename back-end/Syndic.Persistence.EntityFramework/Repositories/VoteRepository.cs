@@ -20,20 +20,14 @@ namespace Syndic.Persistence.EntityFramework.Repositories
             _context = context;
             choicees = new List<Choice>();
         }
-        public Vote? create(Vote model)
+        public Vote create(Vote model)
         {
 
             model.creationDate = DateTime.Now;
             model.IdVote = _context.Votes.Count() + 1;
             _context.Add(model);
             _context.SaveChanges();
-            var vote = _context.Votes
-
-              .Include(vote => vote.Results).ThenInclude(res => res.IdChoiceNavigation)
-              .Include(vote => vote.Results).ThenInclude(res => res.IdParticipantNavigation)
-              .Include(vote => vote.Choices).ThenInclude(choice => choice.Results)
-              .FirstOrDefault(s => s.IdVote == model.IdVote);
-               return vote;
+            return model;
         }
 
         public void update(int id, Vote model)

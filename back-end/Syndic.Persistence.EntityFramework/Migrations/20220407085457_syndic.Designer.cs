@@ -12,8 +12,8 @@ using Syndic.Persistence.EntityFramework;
 namespace Syndic.Persistence.EntityFramework.Migrations
 {
     [DbContext(typeof(SyndicContext))]
-    [Migration("20220411010829_Syndic")]
-    partial class Syndic
+    [Migration("20220407085457_syndic")]
+    partial class syndic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
